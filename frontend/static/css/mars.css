@@ -1,0 +1,56 @@
+body {
+    background: rgb(239,239,239);
+}
+
+.top-area {
+    width: 100%;
+    height: 60px;
+    background: rgb(73,128,181); 
+}
+
+.left-area {
+    float: left;
+    width: 250px;
+    min-height: 600px;
+    background: rgb(38,45,51);
+}
+
+.right-area {
+    margin-left: 250px;
+    min-height: 600px;
+    background: rgb(239,239,239);
+}
+
+.menu-list {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.menu-item {
+    padding: 12px;
+    height: 50px;
+    color: rgb(181,181,181);
+    display: block;
+}
+
+.menu-item:hover {
+    background: rgb(65,77,88);
+    color: rgb(255,255,255);
+    text-decoration: none;
+}
+
+.menu-item:active {
+    background: rgb(97,148,193);
+    color: rgb(255,255,255);
+}
+
+.menu-item:focus {
+    background: rgb(97,148,193);
+    color: rgb(255,255,255);
+}
+
+.menu-item-active {
+    background: rgb(97,148,193);
+    color: rgb(255,255,255);
+}

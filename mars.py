@@ -2,8 +2,8 @@ import os
 import sys
 import traceback
 import tornado
-from tornado import web
-from tornado import gen
+import tornado.process
+import tornado.httpserver
 
 from backend import index_handler
 
@@ -21,7 +21,7 @@ def make_app():
 
 def start():
     try:
-        sockets = tornado.netutil.bind_sockets(9000)
+        sockets = tornado.netutil.bind_sockets(80)
         tornado.process.fork_processes(1)
         server = tornado.httpserver.HTTPServer(make_app())
         server.add_sockets(sockets)
