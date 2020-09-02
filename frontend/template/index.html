@@ -50,6 +50,8 @@
                 var module_name = $(this).attr("href");
                 if (module_name.length > 0) {
                     open_module(module_name);
+                } else {
+                    $("#module_container").html("no content");
                 }
     
                 return false;
