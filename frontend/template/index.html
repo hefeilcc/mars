@@ -7,14 +7,16 @@
     <link rel="shortcut icon" href="{{static_url('mars/image/favicon.ico')}}"/>
     <link rel="stylesheet" href="{{static_url('library/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" href="{{static_url('library/bootstrap-4.5.2/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{static_url('library/jquery-3.5.1/jquery.dataTables.min.css')}}"/>
     <script src="{{static_url('library/jquery-3.5.1/jquery-3.5.1.min.js')}}"></script>
+    <script src="{{static_url('library/jquery-3.5.1/jquery.dataTables.min.js')}}"></script>
     <script src="{{static_url('library/bootstrap-4.5.2/js/bootstrap.min.js')}}"></script>
 
     <title>Mars</title>
     <link rel="stylesheet" href="{{static_url('mars/css/global.css')}}"/>
     <script src="{{static_url('mars/js/global.js')}}"></script>
     <script src="{{static_url('mars/js/login.js')}}"></script>
-    <script src="{{static_url('mars/js/user.js')}}"></script>
+    <script src="{{static_url('mars/js/person.js')}}"></script>
 </head>
 
 <body>
@@ -24,13 +26,13 @@
         <div class="left-area">
             <ul class="menu-list">
                 <li>
-                    <a class="menu-item menu-item-active" href=""><i class="fa fa-fw fa-bars"></i><span> 首页 </span></a>
+                    <a class="menu-item menu-item-active" href=""><i class="fa fa-fw fa-bars"></i> 首页 </a>
                 </li>
                 <li>
-                    <a class="menu-item" href="user"><i class="fa fa-fw fa-bars"></i><span> 用户管理 </span></a>
+                    <a class="menu-item" href="person"><i class="fa fa-fw fa-bars"></i> 个人信息 </a>
                 </li>
                 <li>
-                    <a class="menu-item" href=""><i class="fa fa-fw fa-bars"></i><span> 系统设置 </span></a>
+                    <a class="menu-item" href=""><i class="fa fa-fw fa-bars"></i> 系统设置 </a>
                 </li>
             </ul>
         </div>
@@ -42,7 +44,6 @@
  
     <script>
         $(document).ready(function() {
-            console.log("document is ready");
             $(".menu-item").click(function() {
                 $(".menu-item").removeClass("menu-item-active");
                 $(this).addClass("menu-item-active");
