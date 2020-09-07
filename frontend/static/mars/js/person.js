@@ -1,77 +1,60 @@
 g_web_module.person = {
     html: ' \
         <div class="row"> \
-            <div class="col-sm-4"> \
-                <label class="control-label">年龄</label> \
-            </div> \
-            <div class="col-sm-4"> \
-                <input id="id_edit_age" class="form-control" type="text" placeholder="填写0-100的数字"> \
-            </div> \
-            <div class="col-sm-4"> \
-                <button id="id_button_create" class="btn btn-default" type="button">创建</button> \
+            <div class="col-md-12"> \
+                <label>年龄：</label> \
+                <input id="id_edit_age" class="common_edit" type="text" placeholder="请输入0-100的数字"> \
+                &nbsp;&nbsp; \
+                <button id="id_button_create" class="common_button" type="button">创建</button> \
             </div> \
         </div> \
         <br> \
         <div class="row"> \
             <div class="col-md-12"> \
-                <table id="id_table_person_list" class="table table-striped table-bordered table-hover"> \
-                    <thead> \
-                        <tr> \
-                            <th>身份证号码</th> \
-                            <th>地区</th> \
-                            <th>性别</th> \
-                            <th>年龄</th> \
-                            <th>手机号码</th> \
-                            <th>创建时间</th> \
-                            <th>操作</th> \
-                        </tr> \
-                    </thead> \
-                    <tbody> \
-                    </tbody> \
-                </table> \
+                <table id="id_table_person_list"></table> \
             </div> \
         </div> \
         ',
 
     init: function() {
-        $("#id_btn_create").click(function() {
-            this.ajax_get_person_list("/create");
+        $("#id_button_create").click(function() {
+            this.ajax_list_person("/person/list");
         });
 
         this.init_table();
     },
 
     init_table: function() {
-        this.data_table = $('#id_table_person_list').dataTable({
-            bSort: false,
-            bSearch: false,
-            bFilter: true,
-            aLengthMenu: [5, 10, 20, 100],
-            iDisplayLength: 10,
-            bScrollAutoCss: true,
-            oLanguage: {
-                sLengthMenu: "每页 _MENU_ 条",
-                sZeroRecords: "对不起，查询不到相关数据！",
-                sEmptyTable: "暂无信息！",
-                sInfoEmpty: "当前显示 0 到 0 条",
-                sInfo: "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-                sInfoFiltered: "数据表中共为 _MAX_ 条记录",
-                oPaginate: {
-                    sFirst: "首页",
-                    sPrevious: "上一页",
-                    sNext: "下一页",
-                    sLast: "末页"
-                },
-            },
-
-            fnCreatedRow: function(nRow, aData, iDisplayIndex) {
-                return nRow;
-            }
+        $("#id_table_person_list").bootstrapTable({
+            //url: '/json/data.json',        // 表格数据来源
+            columns: [{
+                field: 'id',
+                title: '身份证号码'
+            }, {
+                field: 'name',
+                title: '地区'
+            }, {
+                field: 'price',
+                title: '性别'
+            },{
+                field: 'column1',
+                title: '年龄'
+            },{
+                field: 'column2',
+                title: '手机号码' 
+            },{
+                field: 'column3',
+                title: '创建时间'
+            },{
+                field: 'column4',
+                title: '操作'
+            } ]
         });
     },
 
-    ajax_get_person_list: function(url) {
+    ajax_list_person: function(url) {
         var that = this;
+        return;
 
         var option = {
             url: url,

@@ -7,10 +7,10 @@
     <link rel="shortcut icon" href="{{static_url('mars/image/favicon.ico')}}"/>
     <link rel="stylesheet" href="{{static_url('library/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
     <link rel="stylesheet" href="{{static_url('library/bootstrap-4.5.2/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" href="{{static_url('library/jquery-3.5.1/jquery.dataTables.min.css')}}"/>
+    <link rel="stylesheet" href="{{static_url('library/bootstrap-4.5.2/css/booststrap-table.min.css')}}"/>
     <script src="{{static_url('library/jquery-3.5.1/jquery-3.5.1.min.js')}}"></script>
-    <script src="{{static_url('library/jquery-3.5.1/jquery.dataTables.min.js')}}"></script>
     <script src="{{static_url('library/bootstrap-4.5.2/js/bootstrap.min.js')}}"></script>
+    <script src="{{static_url('library/bootstrap-4.5.2/js/bootstrap-table.min.js')}}"></script>
 
     <title>Mars</title>
     <link rel="stylesheet" href="{{static_url('mars/css/global.css')}}"/>
@@ -21,40 +21,74 @@
 
 <body>
     <div class="container-fiuled">
-        <div class="top-area">
+        <div class="top_area">
         </div>
-        <div class="left-area">
-            <ul class="menu-list">
+        <div class="left_area">
+            <ul class="menu_list">
                 <li>
-                    <a class="menu-item menu-item-active" href=""><i class="fa fa-fw fa-bars"></i> 首页 </a>
+                    <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 首页 </a>
                 </li>
                 <li>
-                    <a class="menu-item" href="person"><i class="fa fa-fw fa-bars"></i> 个人信息 </a>
+                    <a class="menu_item menu_item_active" href="person"><i class="fa fa-fw fa-bars"></i> 个人信息 </a>
                 </li>
                 <li>
-                    <a class="menu-item" href=""><i class="fa fa-fw fa-bars"></i> 系统设置 </a>
+                    <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 系统设置 </a>
                 </li>
             </ul>
         </div>
-        <div class="right-area">
-            <div id="module_container">
+        <div class="right_area">
+            <div class="row">
+                <div class="col-md-12">
+                    <label id="module_title">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr style="margin-top:0px; margin-bottom:20px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="module_container">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
  
     <script>
         $(document).ready(function() {
-            $(".menu-item").click(function() {
-                $(".menu-item").removeClass("menu-item-active");
-                $(this).addClass("menu-item-active");
+            $(".menu_item").each(function() {
+                if ($(this).hasClass("menu_item_active")) {
+                    var module_title = $(this).text();
+                    $("#module_title").html(module_title);
+
+                    var module_name = $(this).attr("href");
+                    if (module_name.length > 0) {
+                        open_module(module_name);
+                    } else {
+                        $("#module_container").html("");
+                    }
+
+                    return false;
+                }
+            });
+
+            $(".menu_item").click(function() {
+                $(".menu_item").removeClass("menu_item_active");
+                $(this).addClass("menu_item_active");
+
+                var module_title = $(this).text();
+                $("#module_title").html(module_title);
 
                 var module_name = $(this).attr("href");
                 if (module_name.length > 0) {
                     open_module(module_name);
                 } else {
-                    $("#module_container").html("no content");
+                    $("#module_container").html("");
                 }
-    
+
                 return false;
             });
 

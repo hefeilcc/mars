@@ -1,57 +1,103 @@
 body {
-    background: rgb(239,239,239);
+    background: rgb(255,255,255);
 }
 
-.top-area {
+.top_area {
     width: 100%;
     height: 60px;
     background: rgb(73,128,181); 
 }
 
-.left-area {
+.left_area {
     float: left;
     width: 250px;
     min-height: 600px;
     background: rgb(38,45,51);
 }
 
-.right-area {
+.right_area {
     margin-left: 250px;
     padding: 15px;
     min-height: 600px;
-    background: rgb(239,239,239);
+    background: rgb(255,255,255);
 }
 
-.menu-list {
+.menu_list {
     padding: 0px;
     margin: 0px;
     list-style: none;
 }
 
-.menu-item {
+.menu_item {
     padding: 12px;
     height: 50px;
     color: rgb(181,181,181);
     display: block;
 }
 
-.menu-item:hover {
+.menu_item:hover {
     background: rgb(65,77,88);
     color: rgb(255,255,255);
     text-decoration: none;
 }
 
-.menu-item:active {
+.menu_item:active {
     background: rgb(97,148,193);
     color: rgb(255,255,255);
 }
 
-.menu-item:focus {
+.menu_item:focus {
     background: rgb(97,148,193);
     color: rgb(255,255,255);
 }
 
-.menu-item-active {
+.menu_item_active {
     background: rgb(97,148,193);
     color: rgb(255,255,255);
+}
+
+#module_title {
+    height: 45px;
+    color: rgb(100,100,100);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#module_container {
+    padding: 10px;
+    background: rgb(255,255,255);
+}
+
+.common_edit {
+    width: 240px;
+    height: 34px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.common_edit:hover {
+    border: 1px solid #80bdff;
+}
+
+.common_edit:focus {
+    border: 1px solid #70bdff;
+    outline: none;
+}
+
+.common_button {
+    min-width: 80px;
+    height: 34px;
+    background: rgb(15,157,247);
+    color: rgb(255,255,255);
+    border: none;
+    border-radius: 4px;
+}
+
+.common_button:hover {
+    background: rgb(2,131,214);
+}
+
+.common_button:focus {
+    background: rgb(2,131,214);
+    outline: none;
 }
