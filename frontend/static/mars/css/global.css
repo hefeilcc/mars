@@ -22,6 +22,22 @@ body {
     background: rgb(255,255,255);
 }
 
+#system_logo {
+    float: left;
+    display: flex;
+    color: rgb(240,240,240);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#system_logo > img {
+    margin: auto;
+}
+
+#system_logo > label {
+    margin: auto;
+}
+
 .menu_list {
     padding: 0px;
     margin: 0px;
