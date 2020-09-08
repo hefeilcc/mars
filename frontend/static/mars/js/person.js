@@ -2,16 +2,19 @@ g_web_module.person = {
     html: ' \
         <div class="row"> \
             <div class="col-md-12"> \
-                <label>年龄：</label> \
-                <input id="id_edit_age" class="common_edit" type="text" placeholder="请输入0-100的数字"> \
-                &nbsp;&nbsp; \
-                <button id="id_button_create" class="common_button" type="button">创建</button> \
+                <form class="form-inline"> \
+                    <label>年龄：</label> \
+                    <input id="id_edit_age" class="form-control" type="text" placeholder="请输入0-100的数字"> \
+                    &nbsp;&nbsp; \
+                    <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
+                    &nbsp;&nbsp; \
+                    <button id="id_button_delete" class="btn btn-danger" type="button">删除</button> \
+                </form> \
             </div> \
         </div> \
-        <br> \
-        <div class="row"> \
+        <div class="row" style="margin-top:20px;"> \
             <div class="col-md-12"> \
-                <table id="id_table_person_list"></table> \
+                <table id="id_table" class="table table-bordered table-hover table-striped"></table> \
             </div> \
         </div> \
         ',
@@ -25,30 +28,53 @@ g_web_module.person = {
     },
 
     init_table: function() {
-        $("#id_table_person_list").bootstrapTable({
-            //url: '/json/data.json',        // 表格数据来源
-            columns: [{
-                field: 'id',
-                title: '身份证号码'
-            }, {
-                field: 'name',
-                title: '地区'
-            }, {
-                field: 'price',
-                title: '性别'
-            },{
-                field: 'column1',
-                title: '年龄'
-            },{
-                field: 'column2',
-                title: '手机号码' 
-            },{
-                field: 'column3',
-                title: '创建时间'
-            },{
-                field: 'column4',
-                title: '操作'
-            } ]
+        var td_operate = '<button class="btn btn-outline-primary btn-sm" type="button">编辑</button>';
+
+        $("#id_table").bootstrapTable({
+            locale: "zh-CN",
+            pagination: true,
+            pageList: [10, 20, 50, 100],
+            pageSize: 10,
+            buttonsPrefix: "btn",
+            buttonsClass: "default",
+
+            columns: [
+                {field: "no", title: "身份证号码"},
+                {field: "region", title: "地区"},
+                {field: "sex", title: "性别"},
+                {field: "age", title: "年龄"},
+                {field: "phone", title: "手机号码"},
+                {field: "create", title: "创建时间"},
+                {field: "operate", title: "操作"},
+            ],
+            data: [
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000000", region: "合肥", sex: "男", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+                {no: "000000000000000001", region: "舒城", sex: "女", age: 18, phone: "13800000000", create: "2020-09-08 20:00:00", operate: td_operate},
+            ],
         });
     },
 

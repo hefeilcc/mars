@@ -67,37 +67,3 @@ body {
     padding: 10px;
     background: rgb(255,255,255);
 }
-
-.common_edit {
-    width: 240px;
-    height: 34px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-
-.common_edit:hover {
-    border: 1px solid #80bdff;
-}
-
-.common_edit:focus {
-    border: 1px solid #70bdff;
-    outline: none;
-}
-
-.common_button {
-    min-width: 80px;
-    height: 34px;
-    background: rgb(15,157,247);
-    color: rgb(255,255,255);
-    border: none;
-    border-radius: 4px;
-}
-
-.common_button:hover {
-    background: rgb(2,131,214);
-}
-
-.common_button:focus {
-    background: rgb(2,131,214);
-    outline: none;
-}
