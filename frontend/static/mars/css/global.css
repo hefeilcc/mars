@@ -10,6 +10,9 @@ body {
 
 .left_area {
     float: left;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
     width: 250px;
     min-height: 600px;
     background: rgb(38,45,51);
