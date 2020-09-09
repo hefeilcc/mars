@@ -6,6 +6,7 @@ import tornado.process
 import tornado.httpserver
 
 from backend import index_handler
+from backend import person_handler
 
 def make_app():
     settings = {
@@ -15,6 +16,7 @@ def make_app():
 
     app = tornado.web.Application([
         (r"/", index_handler.IndexHandler),
+        (r"/person/(.*)", person_handler.PersonHandler),
     ], **settings)
 
     return app

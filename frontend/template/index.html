@@ -23,40 +23,42 @@
 
 <body>
     <div class="container-fiuled">
-        <div class="top_area">
-            <div id="system_logo">
-                <img src="{{static_url('mars/image/logo.png')}}">
-                <label>Mars管理系统</label>
-            </div>
-        </div>
-        <div class="left_area">
-            <ul class="menu_list">
-                <li>
-                    <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 首页 </a>
-                </li>
-                <li>
-                    <a class="menu_item menu_item_active" href="person"><i class="fa fa-fw fa-bars"></i> 个人信息 </a>
-                </li>
-                <li>
-                    <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 系统设置 </a>
-                </li>
-            </ul>
-        </div>
-        <div class="right_area">
-            <div class="row">
-                <div class="col-md-12">
-                    <label id="module_title">
-                    </label>
+        <div class="main_window">
+            <div class="top_area">
+                <div id="system_logo">
+                    <img src="{{static_url('mars/image/logo.png')}}">
+                    <span> Mars管理系统 </span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <hr style="margin-top:0px; margin-bottom:20px;">
-                </div>
+            <div class="left_area">
+                <ul class="menu_list">
+                    <li>
+                        <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 首页 </a>
+                    </li>
+                    <li>
+                        <a class="menu_item menu_item_active" href="person"><i class="fa fa-fw fa-bars"></i> 个人信息 </a>
+                    </li>
+                    <li>
+                        <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i> 系统设置 </a>
+                    </li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="module_container">
+            <div class="right_area">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="module_title">
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr style="margin-top:0px; margin-bottom:20px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="module_container">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,7 +105,7 @@
         function open_module(module_name)
         {
             console.log("open module:", module_name);
-            $("#module_container").html(g_web_module[module_name].html);
+            $("#module_container").html(g_web_module[module_name].module_html);
             g_web_module[module_name].init();
         }
     </script>

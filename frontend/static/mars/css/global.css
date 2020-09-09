@@ -1,44 +1,44 @@
-body {
+.main_window {
     background: rgb(255,255,255);
 }
 
 .top_area {
-    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     height: 60px;
     background: rgb(73,128,181); 
 }
 
 .left_area {
-    float: left;
     position: absolute;
     top: 60px;
     bottom: 0px;
+    left: 0px;
     width: 250px;
-    min-height: 600px;
     background: rgb(38,45,51);
 }
 
 .right_area {
-    margin-left: 250px;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 250px;
+    right: 0px;
     padding: 15px;
-    min-height: 600px;
     background: rgb(255,255,255);
 }
 
 #system_logo {
-    float: left;
-    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    height: 60px;
+    display: inline-block;
     color: rgb(240,240,240);
     font-size: 24px;
     font-weight: bold;
-}
-
-#system_logo > img {
-    margin: auto;
-}
-
-#system_logo > label {
-    margin: auto;
 }
 
 .menu_list {
@@ -48,10 +48,10 @@ body {
 }
 
 .menu_item {
+    display: block;
     padding: 12px;
     height: 50px;
     color: rgb(181,181,181);
-    display: block;
 }
 
 .menu_item:hover {
