@@ -27,6 +27,10 @@ g_web_module.person = {
             that.create_person();
         });
 
+        $("#id_button_delete").click(function() {
+            that.delete_person();
+        });
+
         this.init_table();
     },
 
@@ -111,5 +115,13 @@ g_web_module.person = {
         };
 
         $.ajax(option);
+    },
+
+    delete_person: function() {
+        g_message_dialog.show("ASK", "删除", "确认删除选中的个人信息？", this, this.ajax_delete_person, []);
+    },
+
+    ajax_delete_person: function() {
+        console.log("ajax_delete_person");
     },
 };
