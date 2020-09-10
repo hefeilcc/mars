@@ -4,7 +4,7 @@ g_web_module.person = {
             <div class="col-md-12"> \
                 <form class="form-inline"> \
                     <label>年龄：</label> \
-                    <input id="id_edit_age" class="form-control" type="text" placeholder="请输入0-100的数字"> \
+                    <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机"> \
                     &nbsp;&nbsp; \
                     <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
                     &nbsp;&nbsp; \
@@ -44,7 +44,7 @@ g_web_module.person = {
                 {field: "sex", title: "性别"},
                 {field: "age", title: "年龄"},
                 {field: "phone", title: "手机号码"},
-                {field: "create", title: "创建时间"},
+                {field: "create_at", title: "创建时间"},
                 {field: "operate", title: "操作"},
             ],
         });
@@ -85,12 +85,6 @@ g_web_module.person = {
 
     create_person: function() {
         var that = this;
-        
-        var age = $("#id_edit_age").val();
-        if (age.length == 0) {
-            console.log("please input age");
-            return;
-        }
 
         var option = {
             url: "/person/create",
@@ -98,7 +92,7 @@ g_web_module.person = {
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
-                "age": age,
+                "age": $("#id_edit_age").val(),
             }),
 
             success: function(data) {

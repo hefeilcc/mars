@@ -9,15 +9,19 @@ from backend import index_handler
 from backend import person_handler
 
 def make_app():
+    current_path = os.path.dirname(__file__)
+    
     settings = {
-        "template_path": os.path.join(os.path.dirname(__file__), "frontend/template"),
-        "static_path": os.path.join(os.path.dirname(__file__), "frontend/static"),
+        "template_path": os.path.join(current_path, "frontend/template"),
+        "static_path": os.path.join(current_path, "frontend/static"),
     }
 
     app = tornado.web.Application([
         (r"/", index_handler.IndexHandler),
         (r"/person/(.*)", person_handler.PersonHandler),
     ], **settings)
+
+    app.current_path = current_path
 
     return app
 
