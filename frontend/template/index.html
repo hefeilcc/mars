@@ -22,14 +22,14 @@
 </head>
 
 <body>
-    <div class="container-fiuled">
-        <div class="main_window">
-            <div class="top_area">
-                <div id="system_logo">
-                    <img src="{{static_url('mars/image/logo.png')}}">
-                    <span> Mars管理系统 </span>
-                </div>
+    <div class="background">
+        <div class="top_area">
+            <div class="system_logo">
+                <img src="{{static_url('mars/image/logo.png')}}">
+                <span> Mars管理系统 </span>
             </div>
+        </div>
+        <div class="center_area">
             <div class="left_area">
                 <ul class="menu_list">
                     <li>
@@ -44,23 +44,13 @@
                 </ul>
             </div>
             <div class="right_area">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label id="module_title">
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <hr style="margin-top:0px; margin-bottom:20px;">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="module_container">
-                        </div>
-                    </div>
-                </div>
+                <div id="module_title"></div>
+                <div id="module_content"></div>
+            </div>
+        </div>
+        <div class="bottom_area">
+            <div class="copyright">
+                <span> Copyright 2020 Icemoon. All rights reserved. </span>
             </div>
         </div>
     </div>
@@ -76,7 +66,7 @@
                     if (module_name.length > 0) {
                         open_module(module_name);
                     } else {
-                        $("#module_container").html("");
+                        $("#module_content").html("");
                     }
 
                     return false;
@@ -94,18 +84,15 @@
                 if (module_name.length > 0) {
                     open_module(module_name);
                 } else {
-                    $("#module_container").html("");
+                    $("#module_content").html("");
                 }
 
                 return false;
             });
-
         });
 
-        function open_module(module_name)
-        {
-            console.log("open module:", module_name);
-            $("#module_container").html(g_web_module[module_name].module_html);
+        function open_module(module_name) {
+            $("#module_content").html(g_web_module[module_name].module_html);
             g_web_module[module_name].init();
         }
     </script>

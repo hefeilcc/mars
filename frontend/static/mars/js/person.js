@@ -118,7 +118,7 @@ g_web_module.person = {
     },
 
     delete_person: function() {
-        g_message_dialog.show("ASK", "删除", "确认删除选中的个人信息？", this, this.ajax_delete_person, []);
+        g_message_dialog.show("删除", "确认删除选中的个人信息？", this, this.ajax_delete_person, []);
     },
 
     ajax_delete_person: function() {
