@@ -18,3 +18,15 @@ def create_person(data):
     session.add(orm_obj)
     session.commit()
     session.close()
+
+def update_person(id, phone):
+    session = db_session()
+    session.query(orm.Person).filter(orm.Person.id==id).update({"phone":phone})
+    session.commit()
+    session.close()
+
+def delete_person(id_list):
+    session = db_session()
+    session.query(orm.Person).filter(orm.Person.id.in_(id_list)).delete(synchronize_session=False)
+    session.commit()
+    session.close()

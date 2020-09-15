@@ -53,6 +53,27 @@ class PersonHandler(web.RequestHandler):
 
         return response
 
+    @gen.coroutine
+    def update(self, para):
+        print("request url: %s, para: %s" % (self.request.uri, para))
+        response = {"errcode": 0, "message": "success"}
+
+        id = para["id"]
+        phone = para["phone"]
+        db_api.update_person(id, phone)
+
+        return response
+
+    @gen.coroutine
+    def delete(self, para):
+        print("request url: %s, para: %s" % (self.request.uri, para))
+        response = {"errcode": 0, "message": "success"}
+
+        id_list = para["id_list"]
+        db_api.delete_person(id_list)
+
+        return response
+
     def __create_person_info(self, age):
         code_list = self.__get_district_code_list()
         index = random.randint(0, len(code_list))
