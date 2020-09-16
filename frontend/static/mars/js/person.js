@@ -1,14 +1,23 @@
 g_web_module.person = {
     module_html: ' \
         <div class="row"> \
-            <div class="col-md-12"> \
-                <form class="form-inline"> \
+            <div class="col-md-6"> \
+                <form class="form-inline pull-left"> \
                     <span>年龄：</span> \
                     <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机"> \
                     &nbsp;&nbsp; \
                     <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
                     &nbsp;&nbsp; \
                     <button id="id_button_delete" class="btn btn-danger" type="button">删除</button> \
+                </form> \
+            </div> \
+            <div class="col-md-6"> \
+                <form class="form-inline pull-right"> \
+                    <input id="id_edit_global_search" class="form-control" type="text" placeholder="搜索内容"> \
+                    &nbsp;&nbsp; \
+                    <button id="id_button_global_search" class="btn btn-primary" type="button">搜索</button> \
+                    &nbsp;&nbsp; \
+                    <button id="id_button_open_advance" class="btn btn-primary" type="button">高级</button> \
                 </form> \
             </div> \
         </div> \
@@ -57,6 +66,10 @@ g_web_module.person = {
     init: function() {
         var that = this;
 
+        $("#id_button_global_search").click(function() {
+            that.global_search();
+        });
+
         $("#id_button_create").click(function() {
             that.create_person();
         });
@@ -66,6 +79,10 @@ g_web_module.person = {
         });
 
         this.init_table();
+    },
+
+    global_search: function() {
+
     },
 
     init_table: function() {
