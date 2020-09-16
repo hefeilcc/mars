@@ -1,4 +1,4 @@
-/* global layout and style */
+/* layout */
 html {
     width: 100%;
     height: 100%;
@@ -121,7 +121,13 @@ body {
     color: rgb(230,230,230);
 }
 
-/* dialog style */
+.content_center {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* dialog */
 .dialog_base {
     top: calc((100% - 200px) / 2);
     left: calc((100% - 450px) / 2);
@@ -157,11 +163,25 @@ body {
     background: rgb(236,238,239);
 }
 
-/* misc style */
-.content_center {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+/* loading */
+.loading_base {
+    top: calc((100% - 40px) / 2);
+    left: calc((100% - 210px) / 2);
+    width: 210px;
+    height: 40px;
+    border-radius: 4px;
+    background: rgb(255,255,255,0.8);
+    line-height: 40px;
+    text-align: center;
+}
+
+/* misc */
+.modal-backdrop {
+    background-color: rgb(255,255,255,0);
+}
+
+.input_error {
+    color: rgb(200,0,0);
 }
 
 .button_x {

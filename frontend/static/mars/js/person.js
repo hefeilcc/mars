@@ -27,22 +27,24 @@ g_web_module.person = {
                 <button id="id_button_close" class="button_x" type="button">&times;</button> \
             </div> \
             <div class="dialog_body"> \
-                <div class="row content_center" style="margin:5px"> \
-                    <div class="col-md-4 pull-right"> \
-                        <span>身份证号码：</span> \
+                <form id="id_form_edit_person"> \
+                    <div class="row content_center" style="margin:5px"> \
+                        <div class="col-md-4"> \
+                            <span>身份证号码：</span> \
+                        </div> \
+                        <div class="col-md-8"> \
+                            <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
+                        </div> \
                     </div> \
-                    <div class="col-md-8 pull-left"> \
-                        <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
+                    <div class="row content_center" style="margin:5px"> \
+                        <div class="col-md-4"> \
+                            <span>手机号码：</span> \
+                        </div> \
+                        <div class="col-md-8"> \
+                            <input id="id_edit_phone" class="form-control"  name="person_phone" type="text"> \
+                        </div> \
                     </div> \
-                </div> \
-                <div class="row content_center" style="margin:5px"> \
-                    <div class="col-md-4"> \
-                        <span>手机号码：</span> \
-                    </div> \
-                    <div class="col-md-8"> \
-                        <input id="id_edit_phone" class="form-control" type="text"> \
-                    </div> \
-                </div> \
+                </form> \
             </div> \
             <div class="dialog_footer"> \
                 <button id="id_button_cancel" class="btn btn-secondary btn-sm" type="button">取消</button> \
@@ -107,14 +109,12 @@ g_web_module.person = {
 
                     $("#id_table").bootstrapTable("load", person_list);
                 } else {
-
+                    g_tips.error("失败", "获取个人信息失败");
                 }
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if (XMLHttpRequest.status != 200) {
-
-                }
+                g_tips.error("失败", "内部错误: {0}".format(XMLHttpRequest.status));
             },
         };
 
@@ -134,20 +134,22 @@ g_web_module.person = {
             }),
 
             success: function(data) {
+                g_loading.hide();
                 if (data["errcode"] == 0) {
                     that.ajax_list_person();
+                    g_tips.info("成功", "创建个人信息成功");
                 } else {
-
+                    g_tips.error("失败", "创建个人信息失败");
                 }
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if (XMLHttpRequest.status != 200) {
-
-                }
+                g_loading.hide();
+                g_tips.error("失败", "内部错误: {0}".format(XMLHttpRequest.status));
             },
         };
 
+        g_loading.show();
         $.ajax(option);
     },
 
@@ -168,6 +170,10 @@ g_web_module.person = {
             });
 
             $("#id_button_ok").click(function() {
+                that.edit_person_validate();
+                if (!$("#id_form_edit_person").validate().form()) {
+                    return;
+                }
                 that.ajax_update_person(id);
             });
         }
@@ -189,22 +195,24 @@ g_web_module.person = {
             }),
 
             success: function(data) {
+                g_loading.hide();
                 if (data["errcode"] == 0) {
                     that.ajax_list_person();
                     $("#id_person_dialog").modal("hide");
                     $("#id_person_dialog").remove();
+                    g_tips.info("成功", "更新个人信息成功");
                 } else {
-
+                    g_tips.error("失败", "更新个人信息失败");
                 }
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if (XMLHttpRequest.status != 200) {
-
-                }
+                g_loading.hide();
+                g_tips.error("失败", "内部错误: {0}".format(XMLHttpRequest.status));
             },
         };
 
+        g_loading.show();
         $.ajax(option);
     },
 
@@ -236,20 +244,41 @@ g_web_module.person = {
             }),
 
             success: function(data) {
+                g_loading.hide();
                 if (data["errcode"] == 0) {
                     that.ajax_list_person();
+                    g_tips.info("成功", "删除个人信息成功");
                 } else {
-
+                    g_tips.error("失败", "删除个人信息失败");
                 }
             },
 
             error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if (XMLHttpRequest.status != 200) {
-
-                }
+                g_loading.hide();
+                g_tips.error("失败", "内部错误: {0}".format(XMLHttpRequest.status));
             },
         };
 
+        g_loading.show();
         $.ajax(option);
+    },
+
+    edit_person_validate: function() {
+        $("#id_form_edit_person").validate({
+            errorElement: "span",
+            errorClass: "input_error",
+
+            rules: {
+                person_phone: {
+                    required: true,
+                },
+            },
+
+            messages: {
+                person_phone: {
+                    required: "请输入手机号码",
+                },
+            },
+        });
     },
 };
