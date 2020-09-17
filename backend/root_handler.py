@@ -14,8 +14,6 @@ class RootHandler(web.RequestHandler):
     @gen.coroutine
     def init(self):
         if os.path.exists("/tmp/login.tmp"):
-            print("index page")
             self.render("index.html")
         else:
-            print("login page")
             self.render("login.html")

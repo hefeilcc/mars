@@ -21,8 +21,8 @@ class AuthHandler(web.RequestHandler):
     def login(self):
         account = self.get_argument("account")
         password = self.get_argument("password")
-        print("%s - %s" % (account, password))
 
+        print("request url: %s, account: %s, password: %s" % (self.request.uri, account, password))
         os.popen("touch /tmp/login.tmp")
 
         self.redirect("/")
