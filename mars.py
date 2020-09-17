@@ -5,7 +5,8 @@ import tornado
 import tornado.process
 import tornado.httpserver
 
-from backend import index_handler
+from backend import root_handler
+from backend import auth_handler
 from backend import person_handler
 
 def make_app():
@@ -17,7 +18,8 @@ def make_app():
     }
 
     app = tornado.web.Application([
-        (r"/", index_handler.IndexHandler),
+        (r"/", root_handler.RootHandler),
+        (r"/auth/(.*)", auth_handler.AuthHandler),
         (r"/person/(.*)", person_handler.PersonHandler),
     ], **settings)
 

@@ -1,0 +1,43 @@
+/* layout */
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: inherit;
+    height: inherit;   
+    margin: 0px;
+}
+
+.background {
+    width: inherit;
+    height: inherit;
+    background-image: url("../image/login_bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.login_area {
+    position: relative;
+    top: calc((100% - 350px) / 2);
+    left: calc((100% - 300px) - 200px);
+    width: 300px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgb(255,255,255,0.8);
+}
+
+.login_title {
+    line-height: 80px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(120,120,120);
+}
+
+#id_edit_account, #id_edit_password, #id_button_login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
