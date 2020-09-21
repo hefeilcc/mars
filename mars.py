@@ -15,6 +15,7 @@ def make_app():
     settings = {
         "template_path": os.path.join(current_path, "frontend/template"),
         "static_path": os.path.join(current_path, "frontend/static"),
+        "cookie_secret": "d13b9a02-36a7-4951-b9bd-153f5fc93e4e",
     }
 
     app = tornado.web.Application([

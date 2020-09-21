@@ -4,6 +4,7 @@ import traceback
 import tornado
 from tornado import web
 from tornado import gen
+from db.redis import api as redis_api
 
 class RootHandler(web.RequestHandler):
     @web.asynchronous
@@ -13,7 +14,11 @@ class RootHandler(web.RequestHandler):
 
     @gen.coroutine
     def init(self):
-        if os.path.exists("/tmp/login.tmp"):
-            self.render("index.html")
-        else:
-            self.render("login.html")
+        session_id = self.get_secure_cookie("session_id")
+        if session_id:
+            session_content = redis_api.get_session(session_id)
+            if session_content:
+                self.render("index.html")
+                return
+
+        self.render("login.html")

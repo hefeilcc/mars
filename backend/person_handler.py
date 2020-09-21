@@ -8,7 +8,7 @@ import time
 import tornado
 from tornado import web
 from tornado import gen
-from db.mysql import api as db_api
+from db.mysql import api as mysql_api
 
 class PersonHandler(web.RequestHandler):
     @web.asynchronous
@@ -25,7 +25,7 @@ class PersonHandler(web.RequestHandler):
         response = {"errcode": 0, "message": "success"}
 
         person_list = []
-        result = db_api.list_person()
+        result = mysql_api.list_person()
         for item in result:
             temp_dict = {
                 "id": item.id,
@@ -49,7 +49,7 @@ class PersonHandler(web.RequestHandler):
         age = para["age"]
         person_info = self.__create_person_info(age)
 
-        db_api.create_person(person_info)
+        mysql_api.create_person(person_info)
 
         return response
 
@@ -60,7 +60,7 @@ class PersonHandler(web.RequestHandler):
 
         id = para["id"]
         phone = para["phone"]
-        db_api.update_person(id, phone)
+        mysql_api.update_person(id, phone)
 
         return response
 
@@ -70,7 +70,7 @@ class PersonHandler(web.RequestHandler):
         response = {"errcode": 0, "message": "success"}
 
         id_list = para["id_list"]
-        db_api.delete_person(id_list)
+        mysql_api.delete_person(id_list)
 
         return response
 
