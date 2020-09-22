@@ -19,12 +19,66 @@
             <div class="login_title">
                 <span > 欢迎登录 </span>
             </div>
-            <form action="/auth/login" method="post">
-                <input id="id_edit_account" class="form-control" name="account" type="text" placeholder="账号">
-                <input id="id_edit_password" class="form-control" type="password" name="password" placeholder="密码">
+            <form id="id_form_login">
+                <input id="id_edit_account" class="form-control" type="text" placeholder="账号">
+                <span id="id_error_account" class="input_error"></span>
+                <input id="id_edit_password" class="form-control" type="password" placeholder="密码">
+                <span id="id_error_password" class="input_error"></span>
                 <button id="id_button_login" class="btn btn-primary btn-block" type="submit">登录</button>
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#id_form_login").submit(function() {
+                var account = $("#id_edit_account").val();
+                var password = $("#id_edit_password").val();
+
+                $("#id_error_account").empty();
+                $("#id_error_password").empty();
+
+                if (account.trim().length == 0) {
+                    $("#id_error_account").text("请输入账号");
+                    $("#id_edit_account").focus();
+                    return false;
+                }
+
+                if (password.trim().length == 0) {
+                    $("#id_error_password").text("请输入密码");
+                    $("#id_edit_password").focus();
+                    return false;
+                }
+
+                var option = {
+                    url: "/auth/login",
+                    type: "POST",
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        "account": account,
+                        "password": password,
+                    }),
+
+                    success: function(data) {
+                        if (data["errcode"] == 0) {
+                            window.location.href = "/";
+                        } else if (data["errcode"] == 1) {
+                            $("#id_error_account").text("用户名不存在");
+                            $("#id_edit_account").focus();
+                        } else if (data["errcode"] == 2) {
+                            $("#id_error_password").text("密码错误");
+                            $("#id_edit_password").focus();
+                        } else {
+                            console.log("登录失败: {0}".format(data["errcode"]));
+                        }
+                    },
+                };
+
+                $.ajax(option);
+                return false;
+            });
+        });
+    </script>
 </body>
 </html>

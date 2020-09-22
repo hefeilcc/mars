@@ -39,5 +39,8 @@ body {
 
 #id_edit_account, #id_edit_password, #id_button_login {
     margin-top: 20px;
-    margin-bottom: 20px;
+}
+
+.input_error {
+    color: rgb(200,0,0);
 }

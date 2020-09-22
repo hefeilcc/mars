@@ -92,12 +92,12 @@
 
                 return false;
             });
-        });
 
-        function open_module(module_name) {
-            $("#module_content").html(g_web_module[module_name].module_html);
-            g_web_module[module_name].init();
-        }
+            function open_module(module_name) {
+                $("#module_content").html(g_web_module[module_name].module_html);
+                g_web_module[module_name].init();
+            }
+        });
     </script>
 </body>
 </html>

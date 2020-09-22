@@ -31,7 +31,7 @@ def make_app():
 def start():
     try:
         sockets = tornado.netutil.bind_sockets(80)
-        tornado.process.fork_processes(1)
+        tornado.process.fork_processes(0)
         server = tornado.httpserver.HTTPServer(make_app())
         server.add_sockets(sockets)
 

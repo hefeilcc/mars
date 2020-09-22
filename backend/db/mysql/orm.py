@@ -6,6 +6,14 @@ from sqlalchemy import DateTime
 
 Base = declarative_base()
 
+class Account(Base):
+    __tablename__ = "tb_account"
+    id = Column(Integer, primary_key=True)
+    account = Column(String(64))
+    password = Column(String(64))
+    create_at = Column(DateTime)
+    update_at = Column(DateTime)
+
 class Person(Base):
     __tablename__ = "tb_person"
     id = Column(Integer, primary_key=True)

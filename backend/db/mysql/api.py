@@ -6,6 +6,12 @@ import orm
 db_engine = create_engine("mysql://root:password@localhost/mars?charset=utf8")
 db_session = sessionmaker(bind=db_engine)
 
+def get_account(account):
+    session = db_session()
+    orm_obj = session.query(orm.Account).filter(orm.Account.account==account).first()
+    session.close()
+    return orm_obj
+
 def list_person():
     session = db_session()
     orm_obj = session.query(orm.Person).order_by(orm.Person.id.desc()).all()

@@ -16,6 +16,25 @@ Date: 2020-09-10 20:34:07
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
+-- Table structure for tb_account
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_account`;
+CREATE TABLE `tb_account` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表id',
+  `account` varchar(64) NOT NULL DEFAULT '' COMMENT '账号',
+  `password` varchar(64) NOT NULL DEFAULT '' COMMENT '密码',
+  `create_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_at` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `key_account` (`account`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_account
+-- ----------------------------
+INSERT INTO `tb_account` VALUES ('1', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', now(), null);
+
+-- ----------------------------
 -- Table structure for tb_person
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_person`;

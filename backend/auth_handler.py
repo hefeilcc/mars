@@ -6,29 +6,47 @@ import uuid
 import json
 import random
 import time
+import hashlib
 import tornado
 from tornado import web
 from tornado import gen
 from db.mysql import api as mysql_api
-from db.redis import api as redis_api
+from session_handler import SessionHandler
 
 class AuthHandler(web.RequestHandler):
     @web.asynchronous
     @gen.coroutine
     def post(self, handler):
         method = getattr(self, handler)
-        yield method()
+        para = json.loads(self.request.body)
+        response = yield method(para)
+        self.finish(json.dumps(response))
 
     @gen.coroutine
-    def login(self):
-        account = self.get_argument("account")
-        password = self.get_argument("password")
+    def login(self, para):
+        print("request url: %s, para: %s" % (self.request.uri, para))
+        response = {"errcode": 0, "message": "success"}
 
-        print("request url: %s, account: %s, password: %s" % (self.request.uri, account, password))
+        account = para["account"]
+        password = para["password"]
 
-        session_id = str(uuid.uuid4())
-        redis_api.save_session(session_id, account)
+        md5sum = hashlib.md5()
+        md5sum.update(password)
 
-        self.set_secure_cookie("session_id", session_id)
+        result = mysql_api.get_account(account)
+        if not result:
+            response["errcode"] = 1
+            response["message"] = "account not exist: %s" % account
+            print(response)
+            return response
 
-        self.redirect("/")
+        if result.password != md5sum.hexdigest():
+            response["errcode"] = 2
+            response["message"] = "password check fail"
+            print(response)
+            return response
+
+        session = SessionHandler(self)
+        session.save_session(account)
+        
+        return response
