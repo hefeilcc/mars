@@ -8,6 +8,7 @@ import time
 import tornado
 from tornado import web
 from tornado import gen
+from decorator_handler import login_required
 from db.mysql import api as mysql_api
 
 class PersonHandler(web.RequestHandler):
@@ -20,6 +21,7 @@ class PersonHandler(web.RequestHandler):
         self.finish(json.dumps(response))
 
     @gen.coroutine
+    @login_required
     def list(self, para):
         print("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
@@ -42,6 +44,7 @@ class PersonHandler(web.RequestHandler):
         return response
 
     @gen.coroutine
+    @login_required
     def create(self, para):
         print("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
@@ -54,6 +57,7 @@ class PersonHandler(web.RequestHandler):
         return response
 
     @gen.coroutine
+    @login_required
     def update(self, para):
         print("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
@@ -65,6 +69,7 @@ class PersonHandler(web.RequestHandler):
         return response
 
     @gen.coroutine
+    @login_required
     def delete(self, para):
         print("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}

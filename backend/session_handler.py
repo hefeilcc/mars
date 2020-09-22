@@ -24,6 +24,7 @@ class SessionHandler():
         if not session_content:
             return False
 
+        redis_api.update_session(session_id)
         return True
 
     def save_session(self, session_content):

@@ -125,6 +125,8 @@ g_web_module.person = {
                     }
 
                     $("#id_table").bootstrapTable("load", person_list);
+                } else if (data["errcode"] == 100) {
+                    window.location.href = "/";
                 } else {
                     g_tips.error("失败", "获取个人信息失败");
                 }
@@ -155,6 +157,8 @@ g_web_module.person = {
                 if (data["errcode"] == 0) {
                     that.ajax_list_person();
                     g_tips.info("成功", "创建个人信息成功");
+                } else if (data["errcode"] == 100) {
+                    window.location.href = "/";
                 } else {
                     g_tips.error("失败", "创建个人信息失败");
                 }
@@ -218,6 +222,8 @@ g_web_module.person = {
                     $("#id_person_dialog").modal("hide");
                     $("#id_person_dialog").remove();
                     g_tips.info("成功", "更新个人信息成功");
+                } else if (data["errcode"] == 100) {
+                    window.location.href = "/";
                 } else {
                     g_tips.error("失败", "更新个人信息失败");
                 }
@@ -265,6 +271,8 @@ g_web_module.person = {
                 if (data["errcode"] == 0) {
                     that.ajax_list_person();
                     g_tips.info("成功", "删除个人信息成功");
+                } else if (data["errcode"] == 100) {
+                    window.location.href = "/";
                 } else {
                     g_tips.error("失败", "删除个人信息失败");
                 }
