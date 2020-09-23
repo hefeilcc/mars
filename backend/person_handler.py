@@ -1,15 +1,14 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
-import traceback
 import json
 import random
 import time
 import tornado
 from tornado import web
 from tornado import gen
+
 from decorator_handler import login_required
 from db.mysql import api as mysql_api
+from utils import logger
 
 class PersonHandler(web.RequestHandler):
     @web.asynchronous
@@ -23,7 +22,7 @@ class PersonHandler(web.RequestHandler):
     @gen.coroutine
     @login_required
     def list(self, para):
-        print("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
 
         person_list = []
@@ -46,7 +45,7 @@ class PersonHandler(web.RequestHandler):
     @gen.coroutine
     @login_required
     def create(self, para):
-        print("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
 
         age = para["age"]
@@ -59,7 +58,7 @@ class PersonHandler(web.RequestHandler):
     @gen.coroutine
     @login_required
     def update(self, para):
-        print("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
 
         id = para["id"]
@@ -71,7 +70,7 @@ class PersonHandler(web.RequestHandler):
     @gen.coroutine
     @login_required
     def delete(self, para):
-        print("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
 
         id_list = para["id_list"]

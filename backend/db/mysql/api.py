@@ -1,6 +1,8 @@
+# -*- coding: UTF-8 -*-
+import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import datetime
+
 import orm
 
 db_engine = create_engine("mysql://root:password@localhost/mars?charset=utf8")

@@ -1,6 +1,7 @@
+# -*- coding: UTF-8 -*-
 import redis
 
-redis_pool = redis.ConnectionPool()
+redis_pool = redis.ConnectionPool(host="localhost")
 redis_client = redis.StrictRedis(connection_pool=redis_pool)
 
 session_prefix = "session_"

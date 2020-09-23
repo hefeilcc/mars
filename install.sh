@@ -7,5 +7,4 @@ ps -ef | grep -w mars.py | grep -v grep | awk '{print $2}' | xargs kill >/dev/nu
 rm -rf /opt/mars
 cp -rf ../mars /opt
 
-nohup python -u /opt/mars/mars.py >> /var/log/mars.log 2>&1 &
-
+python -u /opt/mars/mars.py

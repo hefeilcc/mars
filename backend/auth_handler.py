@@ -1,17 +1,13 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
-import traceback
-import uuid
 import json
-import random
-import time
 import hashlib
 import tornado
 from tornado import web
 from tornado import gen
-from db.mysql import api as mysql_api
+
 from session_handler import SessionHandler
+from db.mysql import api as mysql_api
+from utils import logger
 
 class AuthHandler(web.RequestHandler):
     @web.asynchronous
@@ -24,7 +20,7 @@ class AuthHandler(web.RequestHandler):
 
     @gen.coroutine
     def login(self, para):
-        print("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
         response = {"errcode": 0, "message": "success"}
 
         account = para["account"]
@@ -37,13 +33,13 @@ class AuthHandler(web.RequestHandler):
         if not result:
             response["errcode"] = 1
             response["message"] = "account not exist: %s" % account
-            print(response)
+            logger.debug(response)
             return response
 
         if result.password != md5sum.hexdigest():
             response["errcode"] = 2
             response["message"] = "password check fail"
-            print(response)
+            logger.debug(response)
             return response
 
         session = SessionHandler(self)

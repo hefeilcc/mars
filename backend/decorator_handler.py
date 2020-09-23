@@ -1,16 +1,8 @@
 # -*- coding: UTF-8 -*-
-import os
-import sys
-import traceback
-import uuid
-import json
-import random
-import time
-import tornado
-from tornado import web
-from tornado import gen
 from functools import wraps
+
 from session_handler import SessionHandler
+from utils import logger
 
 def login_required(func):
     @wraps(func)

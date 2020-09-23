@@ -1,10 +1,10 @@
-import os
-import sys
-import traceback
+# -*- coding: UTF-8 -*-
 import tornado
 from tornado import web
 from tornado import gen
+
 from session_handler import SessionHandler
+from utils import logger
 
 class RootHandler(web.RequestHandler):
     @web.asynchronous

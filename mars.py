@@ -1,6 +1,7 @@
 import os
 import sys
 import traceback
+import logging
 import tornado
 import tornado.process
 import tornado.httpserver
@@ -8,6 +9,7 @@ import tornado.httpserver
 from backend import root_handler
 from backend import auth_handler
 from backend import person_handler
+from backend.utils import logger
 
 def make_app():
     current_path = os.path.dirname(__file__)
@@ -30,16 +32,20 @@ def make_app():
 
 def start():
     try:
+        logging.getLogger("tornado.general").disabled = True
+        logging.getLogger("tornado.application").disabled = True
+        logging.getLogger("tornado.access").disabled = True
+
         sockets = tornado.netutil.bind_sockets(80)
         tornado.process.fork_processes(0)
         server = tornado.httpserver.HTTPServer(make_app())
         server.add_sockets(sockets)
 
-        print("mars process start...")
+        logger.debug("mars process start...")
         tornado.ioloop.IOLoop.instance().start()
 
     except:
-        print("mars start failed: %s" % traceback.format_exc())
+        logger.debug("mars start failed: %s" % traceback.format_exc())
         sys.exit(1)
 
 if __name__ == "__main__":
