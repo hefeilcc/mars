@@ -98,6 +98,10 @@ body {
     color: rgb(255,255,255);
 }
 
+.menu_item span {
+    margin-left: 5px;
+}
+
 #module_title {
     padding-left: 15px;
     width: 100%;
