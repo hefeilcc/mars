@@ -1,0 +1,69 @@
+/* dialog */
+.dialog_base {
+    width: 400px;
+    height: 200px;
+    top: calc((100% - 200px) / 2);
+    left: calc((100% - 450px) / 2);
+    border-radius: 4px;
+    background: rgb(255,255,255);
+}
+
+.dialog_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    height: 45px;
+    font-size: 20px;
+    background: rgb(73,128,181);
+    color: rgb(240,240,240);
+}
+
+.dialog_body {
+    padding: 15px;
+    height: calc(100% - 45px - 45px);
+    font-size: 16px;
+}
+
+.dialog_footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+    height: 45px;
+    background: rgb(236,238,239);
+}
+
+/* loading */
+.loading_base {
+    top: calc((100% - 40px) / 2);
+    left: calc((100% - 210px) / 2);
+    width: 210px;
+    height: 40px;
+    border-radius: 4px;
+    background: rgb(255,255,255,0.8);
+    line-height: 40px;
+    text-align: center;
+}
+
+/* misc */
+.input_error {
+    color: rgb(200,0,0);
+}
+
+.button_x {
+    border: none;
+    padding: 0px;
+    zoom: 1.2;
+    background: transparent;
+    color: rgb(10,10,10);
+}
+
+.button_x:hover {
+    color: rgb(210,210,210);
+}
+
+.button_x:focus {
+    outline: 0px;
+    color: rgb(200,200,200);
+}

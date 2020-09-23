@@ -2,22 +2,26 @@ g_web_module.person = {
     module_html: ' \
         <div class="row"> \
             <div class="col-md-6"> \
-                <form class="form-inline pull-left"> \
-                    <span>年龄：</span> \
-                    <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机"> \
-                    &nbsp;&nbsp; \
-                    <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
-                    &nbsp;&nbsp; \
-                    <button id="id_button_delete" class="btn btn-danger" type="button">删除</button> \
+                <form class="form-inline" style="float:left;"> \
+                    <div class="form-group"> \
+                        <label class="control-label">年龄：</label> \
+                        <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机"> \
+                    </div> \
                 </form> \
+                <div style="float:left; margin-left:5px;"> \
+                    <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
+                    <button id="id_button_delete" class="btn btn-danger" type="button">删除</button> \
+                </div> \
             </div> \
             <div class="col-md-6"> \
-                <form class="form-inline pull-right"> \
-                    <input id="id_edit_global_search" class="form-control" type="text" placeholder="搜索内容"> \
-                    &nbsp;&nbsp; \
+                <div style="float:right;"> \
                     <button id="id_button_global_search" class="btn btn-primary" type="button">搜索</button> \
-                    &nbsp;&nbsp; \
                     <button id="id_button_open_advance" class="btn btn-primary" type="button">高级</button> \
+                </div> \
+                <form class="form-inline" style="float:right; margin-right:5px;"> \
+                    <div class="form-group"> \
+                        <input id="id_edit_global_search" class="form-control" type="text" placeholder="搜索内容"> \
+                    </div> \
                 </form> \
             </div> \
         </div> \
@@ -37,7 +41,7 @@ g_web_module.person = {
             </div> \
             <div class="dialog_body"> \
                 <form id="id_form_edit_person"> \
-                    <div class="row content_center" style="margin:5px"> \
+                    <div class="row" style="margin:5px"> \
                         <div class="col-md-4"> \
                             <span>身份证号码：</span> \
                         </div> \
@@ -45,7 +49,7 @@ g_web_module.person = {
                             <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
                         </div> \
                     </div> \
-                    <div class="row content_center" style="margin:5px"> \
+                    <div class="row" style="margin:5px"> \
                         <div class="col-md-4"> \
                             <span>手机号码：</span> \
                         </div> \
