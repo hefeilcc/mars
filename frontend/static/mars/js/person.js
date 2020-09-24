@@ -34,35 +34,36 @@ g_web_module.person = {
         ',
 
     person_dialog: ' \
-        <div id="id_person_dialog" class="modal dialog_base" style="width:420px;height:230px" tabindex="-1"> \
-            <div class="dialog_header"> \
-                <span id="id_dialog_title"></span> \
-                <button id="id_button_close" class="button_x" type="button">&times;</button> \
-            </div> \
-            <div class="dialog_body"> \
-                <form id="id_form_edit_person"> \
-                    <div class="row" style="margin:5px"> \
-                        <div class="col-md-4"> \
-                            <span>身份证号码：</span> \
+        <div id="id_person_dialog" class="modal" tabindex="-1"> \
+            <div id="id_div_dialog" style="width:420px;"> \
+                <div class="dialog_header"> \
+                    <span id="id_dialog_title" style="float:left;"></span> \
+                    <button id="id_button_close" class="button_x" style="float:right;" type="button">&times;</button> \
+                </div> \
+                <div class="dialog_body"> \
+                    <form id="id_form_edit_person"> \
+                        <div class="row" style="margin:5px"> \
+                            <div class="col-md-4"> \
+                                <span>身份证号码：</span> \
+                            </div> \
+                            <div class="col-md-8"> \
+                                <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
+                            </div> \
                         </div> \
-                        <div class="col-md-8"> \
-                            <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
+                        <div class="row" style="margin:5px"> \
+                            <div class="col-md-4"> \
+                                <span>手机号码：</span> \
+                            </div> \
+                            <div class="col-md-8"> \
+                                <input id="id_edit_phone" class="form-control"  name="person_phone" type="text"> \
+                            </div> \
                         </div> \
-                    </div> \
-                    <div class="row" style="margin:5px"> \
-                        <div class="col-md-4"> \
-                            <span>手机号码：</span> \
-                        </div> \
-                        <div class="col-md-8"> \
-                            <input id="id_edit_phone" class="form-control"  name="person_phone" type="text"> \
-                        </div> \
-                    </div> \
-                </form> \
-            </div> \
-            <div class="dialog_footer"> \
-                <button id="id_button_cancel" class="btn btn-secondary btn-sm" type="button">取消</button> \
-                &nbsp;&nbsp; \
-                <button id="id_button_ok" class="btn btn-primary btn-sm" type="button">确定</button> \
+                    </form> \
+                </div> \
+                <div class="dialog_footer"> \
+                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">确定</button> \
+                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">取消</button> \
+                </div> \
             </div> \
         </div> \
         ',
@@ -200,6 +201,14 @@ g_web_module.person = {
                     return;
                 }
                 that.ajax_update_person(id);
+            });
+
+            $("#id_person_dialog").on("shown.bs.modal", function() {
+                $("#id_div_dialog").css({
+                    "position": "relative",
+                    "top": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").height()),
+                    "left": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").width()),
+                });
             });
         }
 
