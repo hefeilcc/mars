@@ -248,7 +248,7 @@ g_web_module.person = {
         if (select_list.length == 0) {
             g_message_dialog.show("提示", "请选择需要删除的表项。");
         } else {
-            g_confirm_dialog.show("删除", "确认删除选中的 {0} 条个人信息？".format(select_list.length), this, this.ajax_delete_person, select_list);
+            g_message_dialog.show("删除", "确认删除选中的 {0} 条个人信息？".format(select_list.length), this, this.ajax_delete_person, select_list);
         }
     },
 

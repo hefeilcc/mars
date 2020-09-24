@@ -2,30 +2,55 @@ var g_web_module = {};
 
 var g_message_dialog = {
     html: ' \
-        <div id="id_message_dialog" class="modal dialog_base" tabindex="-1"> \
-            <div class="dialog_header"> \
-                <span id="id_dialog_title"></span> \
-                <button id="id_button_close" class="button_x" type="button">&times;</button> \
-            </div> \
-            <div class="dialog_body"> \
-                <span id="id_dialog_content"></span> \
-            </div> \
-            <div class="dialog_footer"> \
-                <button id="id_button_ok" class="btn btn-primary btn-sm" type="button">确定</button> \
+        <div id="id_message_dialog" class="modal" tabindex="-1"> \
+            <div id="id_div_dialog" style="width:400px;"> \
+                <div class="dialog_header"> \
+                    <span id="id_dialog_title" style="float:left;"></span> \
+                    <button id="id_button_close" class="button_x" style="float:right;" type="button">&times;</button> \
+                </div> \
+                <div class="dialog_body"> \
+                    <span id="id_dialog_content"></span> \
+                </div> \
+                <div class="dialog_footer"> \
+                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">确定</button> \
+                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">取消</button> \
+                </div> \
             </div> \
         </div> \
         ',
 
-    show: function(title, content) {
+    show: function(title, content, target, callback, data) {
         if ($("#id_message_dialog").length == 0) {
             $("body").append(this.html);
+
+            if (callback) {
+                $("#id_button_cancel").show();
+            } else {
+                $("#id_button_cancel").hide();
+            }
 
             $("#id_dialog_title").text(title);
             $("#id_dialog_content").text(content);
 
-            $("#id_button_close, #id_button_ok").click(function() {
+            $("#id_button_close, #id_button_cancel").click(function() {
                 $('#id_message_dialog').modal("hide");
                 $('#id_message_dialog').remove();
+            });
+
+            $("#id_button_ok").click(function() {
+                $("#id_message_dialog").modal("hide");
+                $("#id_message_dialog").remove();
+                if (callback) {
+                    callback.call(target, data);
+                }
+            });
+
+            $("#id_message_dialog").on("shown.bs.modal", function() {
+                $("#id_div_dialog").css({
+                    "position": "relative",
+                    "top": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").height()),
+                    "left": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").width()),
+                });
             });
         }
 
@@ -33,53 +58,13 @@ var g_message_dialog = {
     },
 };
 
-var g_confirm_dialog = {
-    html: ' \
-        <div id="id_confirm_dialog" class="modal dialog_base" tabindex="-1"> \
-            <div class="dialog_header"> \
-                <span id="id_dialog_title"></span> \
-                <button id="id_button_close" class="button_x" type="button">&times;</button> \
-            </div> \
-            <div class="dialog_body"> \
-                <span id="id_dialog_content"></span> \
-            </div> \
-            <div class="dialog_footer"> \
-                <button id="id_button_cancel" class="btn btn-secondary btn-sm" type="button">取消</button> \
-                &nbsp;&nbsp; \
-                <button id="id_button_ok" class="btn btn-primary btn-sm" type="button">确定</button> \
-            </div> \
-        </div> \
-        ',
-
-    show: function(title, content, target, callback, data) {
-        if ($("#id_confirm_dialog").length == 0) {
-            $("body").append(this.html);
-
-            $("#id_dialog_title").text(title);
-            $("#id_dialog_content").text(content);
-
-            $("#id_button_close, #id_button_cancel").click(function() {
-                $('#id_confirm_dialog').modal("hide");
-                $('#id_confirm_dialog').remove();
-            });
-
-            $("#id_button_ok").click(function() {
-                $("#id_confirm_dialog").modal("hide");
-                $("#id_confirm_dialog").remove();
-                if (callback) {
-                    callback.call(target, data);
-                }
-            });
-        }
-
-        $("#id_confirm_dialog").modal({backdrop: "static", keyboard: false});
-    },
-};
-
 var g_loading = {
     html: ' \
-        <div id="id_loading" class="modal loading_base" tabindex="-1"> \
-            <span id="id_loading_text">加载中, 请稍候...</span> \
+        <div id="id_loading" class="modal" tabindex="-1"> \
+            <div id="id_div_loading"> \
+                <div id="id_loading_image"></div> \
+                <span id="id_loading_text">处理中, 请稍候...</span> \
+            </div> \
         </div> \
         ',
 

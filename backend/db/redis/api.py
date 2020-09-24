@@ -16,4 +16,4 @@ def save_session(session_id, session_content, expired_time=session_expire):
     redis_client.setex(session_name, expired_time, session_content)
 
 def update_session(session_id):
-    redis_client.expire(session_id, session_expire)
+    redis_client.expire(session_prefix + session_id, session_expire)
