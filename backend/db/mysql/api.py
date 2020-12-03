@@ -10,20 +10,20 @@ db_session = sessionmaker(bind=db_engine)
 
 def get_account(account):
     session = db_session()
-    orm_obj = session.query(orm.Account).filter(orm.Account.account==account).first()
+    result = session.query(orm.Account).filter(orm.Account.account==account).first()
     session.close()
-    return orm_obj
+    return result
 
 def list_person():
     session = db_session()
-    orm_obj = session.query(orm.Person).order_by(orm.Person.id.desc()).all()
+    result = session.query(orm.Person).order_by(orm.Person.id.desc()).all()
     session.close()
-    return orm_obj
+    return result
 
 def create_person(data):
     session = db_session()
-    orm_obj = orm.Person(no=data["no"], region=data["region"], sex=data["sex"], age=data["age"], phone=data["phone"], create_at=datetime.datetime.now())
-    session.add(orm_obj)
+    person = orm.Person(no=data["no"], region=data["region"], sex=data["sex"], age=data["age"], phone=data["phone"], create_at=datetime.datetime.now())
+    session.add(person)
     session.commit()
     session.close()
 
