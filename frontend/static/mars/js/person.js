@@ -16,7 +16,6 @@ g_web_module.person = {
             <div class="col-md-6"> \
                 <div style="float:right;"> \
                     <button id="id_button_global_search" class="btn btn-primary" type="button">搜索</button> \
-                    <button id="id_button_open_advance" class="btn btn-primary" type="button">高级</button> \
                 </div> \
                 <form class="form-inline" style="float:right; margin-right:5px;"> \
                     <div class="form-group"> \
@@ -86,8 +85,40 @@ g_web_module.person = {
         this.init_table();
     },
 
-    global_search: function() {
+    clear_search: function() {
+        var options = {
+            "filterAlgorithm": function(row, filter) {
+                return true;
+            },
+        };
 
+        $("#id_table").bootstrapTable("filterBy", {}, options);
+    },
+
+    global_search: function() {
+        var content = $("#id_edit_global_search").val().trim();
+        if (content == "") {
+            this.clear_search();
+            return;
+        }
+
+        var filter = {"value": content};
+        var options = {
+            "filterAlgorithm": function(row, filter) {
+                for (var key in row) {
+                    if (key == "id" || key == "operate") {
+                        continue;
+                    } else {
+                        if (String(row[key]).indexOf(filter.value) >= 0) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            },
+        };
+
+        $("#id_table").bootstrapTable("filterBy", filter, options);
     },
 
     init_table: function() {
@@ -115,6 +146,8 @@ g_web_module.person = {
     },
 
     ajax_list_person: function() {
+        var that = this;
+
         var option = {
             url: "/person/list",
             type: "POST",
@@ -124,6 +157,8 @@ g_web_module.person = {
 
             success: function(data) {
                 if (data["errcode"] == 0) {
+                    that.clear_search();
+
                     var person_list = data["person_list"];
                     for (var i = 0; i < person_list.length; i++) {
                         person_list[i]["operate"] = '<button class="btn btn-outline-primary btn-sm" type="button" onclick="g_web_module.person.update_person({0})">编辑</button>'.format(person_list[i]["id"]);
