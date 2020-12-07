@@ -1,29 +1,55 @@
-/* bootstrap */
-.modal-backdrop.show {
-    opacity: 0.2;
+/* good css sample */
+.declaration-order {
+    /* positioning */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    /* box model */
+    display: block;
+    float: right;
+    width: 100px;
+    height: 100px;
+
+    /* typography */
+    font: normal 13px "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+
+    /* visual */
+    background-color: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+
+    /* misc */
+    opacity: 1;
 }
 
 /* dialog */
 .dialog_header {
-    padding-left: 15px;
-    padding-right: 15px;
-    height: 45px;
-    line-height: 45px;
+    padding: 10px;
+    height: 50px;
+    line-height: 30px;
     font-size: 20px;
-    background: rgb(73,128,181);
-    color: rgb(240,240,240);
+    background-color: rgb(91,162,230);
+    color: rgb(255,255,255);
 }
 
 .dialog_body {
-    padding: 15px;
-    min-height: 110px;
-    background: rgb(255,255,255);
+    padding: 10px;
+    min-height: 100px;
+    background-color: rgb(247,247,247);
 }
 
 .dialog_footer {
-    padding-right: 15px;
-    height: 45px;
-    background: rgb(216,218,219);
+    padding: 10px;
+    height: 50px;
+    border-top: 1px solid rgb(233,236,239);
+    background-color: rgb(243,243,243);
 }
 
 /* loading */
@@ -54,7 +80,7 @@
 .button_x {
     border: none;
     padding: 0px;
-    zoom: 1.2;
+    zoom: 0.8;
     background: transparent;
     color: rgb(10,10,10);
 }

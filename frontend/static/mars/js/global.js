@@ -1,63 +1,76 @@
+/* js string format */
+String.prototype.format = function() {
+    a = this;
+    for (k in arguments) {
+        a = a.replace("{" + k + "}", arguments[k]);
+    }
+    return a;
+};
+
+/* all sub-page object */
 var g_web_module = {};
 
+/* message dialog */
 var g_message_dialog = {
     html: ' \
         <div id="id_message_dialog" class="modal" tabindex="-1"> \
-            <div id="id_div_dialog" style="width:400px;"> \
+            <div id="id_dialog_display" style="width:400px;"> \
                 <div class="dialog_header"> \
                     <span id="id_dialog_title" style="float:left;"></span> \
-                    <button id="id_button_close" class="button_x" style="float:right;" type="button">&times;</button> \
+                    <button id="id_button_close" class="button_x" style="float:right;">✕</button> \
                 </div> \
                 <div class="dialog_body"> \
                     <span id="id_dialog_content"></span> \
                 </div> \
                 <div class="dialog_footer"> \
-                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">确定</button> \
-                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">取消</button> \
+                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right;">确定</button> \
+                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="margin-right:5px; float:right;">取消</button> \
                 </div> \
             </div> \
-        </div> \
-        ',
+        </div>',
 
     show: function(title, content, target, callback, data) {
-        if ($("#id_message_dialog").length == 0) {
-            $("body").append(this.html);
-
-            if (callback) {
-                $("#id_button_cancel").show();
-            } else {
-                $("#id_button_cancel").hide();
-            }
-
-            $("#id_dialog_title").text(title);
-            $("#id_dialog_content").text(content);
-
-            $("#id_button_close, #id_button_cancel").click(function() {
-                $('#id_message_dialog').modal("hide");
-                $('#id_message_dialog').remove();
-            });
-
-            $("#id_button_ok").click(function() {
-                $("#id_message_dialog").modal("hide");
-                $("#id_message_dialog").remove();
-                if (callback) {
-                    callback.call(target, data);
-                }
-            });
-
-            $("#id_message_dialog").on("shown.bs.modal", function() {
-                $("#id_div_dialog").css({
-                    "position": "relative",
-                    "top": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").height()),
-                    "left": "calc((100% - {0}px) / 2)".format($("#id_div_dialog").width()),
-                });
-            });
+        if ($("#id_message_dialog").length > 0) {
+            return;
         }
+
+        $("body").append(this.html);
+
+        if (callback) {
+            $("#id_button_cancel").show();
+        } else {
+            $("#id_button_cancel").hide();
+        }
+
+        $("#id_dialog_title").text(title);
+        $("#id_dialog_content").text(content);
+
+        $("#id_button_close, #id_button_cancel").click(function() {
+            $('#id_message_dialog').modal("hide");
+            $("#id_message_dialog").remove();
+        });
+
+        $("#id_button_ok").click(function() {
+            $("#id_message_dialog").modal("hide");
+            $("#id_message_dialog").remove();
+            if (callback) {
+                callback.call(target, data);
+            }
+        });
+
+        $("#id_message_dialog").on("shown.bs.modal", function() {
+            $("#id_dialog_display").css({
+                "position": "relative",
+                "top": "calc((100% - {0}px) / 2)".format($("#id_dialog_display").height()),
+                "left": "calc((100% - {0}px) / 2)".format($("#id_dialog_display").width()),
+            });
+        });
 
         $("#id_message_dialog").modal({backdrop: "static", keyboard: false});
     },
 };
 
+/* loading bar */
 var g_loading = {
     html: ' \
         <div id="id_loading" class="modal" tabindex="-1"> \
@@ -81,6 +94,7 @@ var g_loading = {
     },
 };
 
+/* tips */
 var g_tips = {
     init: function() {
         toastr.options = {
