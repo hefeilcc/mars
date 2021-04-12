@@ -12,22 +12,22 @@ var g_web_module = {};
 
 /* message dialog */
 var g_message_dialog = {
-    html: ' \
-        <div id="id_message_dialog" class="modal" tabindex="-1"> \
-            <div id="id_dialog_display" style="width:400px;"> \
-                <div class="dialog_header"> \
-                    <span id="id_dialog_title" style="float:left;"></span> \
-                    <button id="id_button_close" class="button_x" style="float:right;">✕</button> \
-                </div> \
-                <div class="dialog_body"> \
-                    <span id="id_dialog_content"></span> \
-                </div> \
-                <div class="dialog_footer"> \
-                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right;">确定</button> \
-                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="margin-right:5px; float:right;">取消</button> \
-                </div> \
-            </div> \
-        </div>',
+    html: `
+        <div id="id_message_dialog" class="modal" tabindex="-1">
+            <div id="id_dialog_display" style="width:400px;">
+                <div class="dialog_header">
+                    <span id="id_dialog_title" style="float:left;"></span>
+                    <button id="id_button_close" class="button_x" style="float:right;">✕</button>
+                </div>
+                <div class="dialog_body">
+                    <span id="id_dialog_content"></span>
+                </div>
+                <div class="dialog_footer">
+                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right;">确定</button>
+                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="margin-right:5px; float:right;">取消</button>
+                </div>
+            </div>
+        </div>`,
 
     show: function(title, content, target, callback, data) {
         if ($("#id_message_dialog").length > 0) {
@@ -72,14 +72,14 @@ var g_message_dialog = {
 
 /* loading bar */
 var g_loading = {
-    html: ' \
-        <div id="id_loading" class="modal" tabindex="-1"> \
-            <div id="id_div_loading"> \
-                <div id="id_loading_image"></div> \
-                <span id="id_loading_text">处理中, 请稍候...</span> \
-            </div> \
-        </div> \
-        ',
+    html: `
+        <div id="id_loading" class="modal" tabindex="-1">
+            <div id="id_div_loading">
+                <div id="id_loading_image"></div>
+                <span id="id_loading_text">处理中, 请稍候...</span>
+            </div>
+        </div>
+        `,
 
     show: function() {
         if ($("#id_loading").length == 0) {

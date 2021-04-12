@@ -1,43 +1,43 @@
 g_web_module.person = {
-    module_html: ' \
-        <div class="row"> \
-            <div class="col-md-6"> \
-                <form class="form-inline" style="float:left;"> \
-                    <div class="form-group"> \
-                        <label class="control-label">年龄：</label> \
-                        <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机"> \
-                    </div> \
-                </form> \
-                <div style="float:left; margin-left:5px;"> \
-                    <button id="id_button_create" class="btn btn-primary" type="button">创建</button> \
-                    <button id="id_button_delete" class="btn btn-danger" type="button">删除</button> \
-                </div> \
-            </div> \
-            <div class="col-md-6"> \
-                <div style="float:right;"> \
-                    <button id="id_button_global_search" class="btn btn-primary" type="button">搜索</button> \
-                </div> \
-                <form class="form-inline" style="float:right; margin-right:5px;"> \
-                    <div class="form-group"> \
-                        <input id="id_edit_global_search" class="form-control" type="text" placeholder="搜索内容"> \
-                    </div> \
-                </form> \
-            </div> \
-        </div> \
-        <div class="row" style="margin-top:20px;"> \
-            <div class="col-md-12"> \
-                <table id="id_table" class="table table-bordered table-hover table-striped"> \
-                </table> \
-            </div> \
-        </div> \
-        ',
+    module_html: `
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-inline" style="float:left;">
+                    <div class="form-group">
+                        <label class="control-label">年龄：</label>
+                        <input id="id_edit_age" class="form-control" type="text" placeholder="取值0-100，默认随机">
+                    </div>
+                </form>
+                <div style="float:left; margin-left:5px;">
+                    <button id="id_button_create" class="btn btn-primary" type="button">创建</button>
+                    <button id="id_button_delete" class="btn btn-danger" type="button">删除</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="float:right;">
+                    <button id="id_button_global_search" class="btn btn-primary" type="button">搜索</button>
+                </div>
+                <form class="form-inline" style="float:right; margin-right:5px;">
+                    <div class="form-group">
+                        <input id="id_edit_global_search" class="form-control" type="text" placeholder="搜索内容">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-12">
+                <table id="id_table" class="table table-bordered table-hover table-striped">
+                </table>
+            </div>
+        </div>
+        `,
 
     person_dialog: `
         <div id="id_person_dialog" class="modal" tabindex="-1">
             <div id="id_div_dialog" style="width:420px;">
                 <div class="dialog_header">
                     <span id="id_dialog_title" style="float:left;"></span>
-                    <button id="id_button_close" class="button_x" style="float:right;">✕</button> \
+                    <button id="id_button_close" class="button_x" style="float:right;">✕</button>
                 </div>
                 <div class="dialog_body">
                     <form id="id_form_edit_person" class="form-horizontal">
