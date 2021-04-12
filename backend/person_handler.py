@@ -30,7 +30,7 @@ class PersonHandler(web.RequestHandler):
         for item in result:
             temp_dict = {
                 "id": item.id,
-                "no": item.no,
+                "id_card": item.id_card,
                 "region": item.region,
                 "sex": item.sex,
                 "age": item.age,
@@ -117,7 +117,7 @@ class PersonHandler(web.RequestHandler):
         create_time = time.strftime("%Y-%m-%d %H:%M:%S", current_date)
 
         result = {
-            "no": id_str,
+            "id_card": id_str,
             "region": code_list[index]["state"] + code_list[index]["city"] + code_list[index]["district"],
             "sex": "女" if int(id_str[16]) % 2 == 0 else "男",
             "age": age,

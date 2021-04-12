@@ -40,7 +40,7 @@ INSERT INTO `tb_account` VALUES ('1', 'admin', '5f4dcc3b5aa765d61d8327deb882cf99
 DROP TABLE IF EXISTS `tb_person`;
 CREATE TABLE `tb_person` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表id',
-  `no` varchar(64) NOT NULL DEFAULT '' COMMENT '身份证号码',
+  `id_card` varchar(64) NOT NULL DEFAULT '' COMMENT '身份证号码',
   `region` varchar(256) NOT NULL DEFAULT '' COMMENT '地区',
   `sex` varchar(64) NOT NULL DEFAULT '' COMMENT '性别',
   `age` int(11) NOT NULL DEFAULT '0' COMMENT '年龄',
@@ -48,7 +48,7 @@ CREATE TABLE `tb_person` (
   `create_at` datetime DEFAULT NULL COMMENT '创建时间',
   `update_at` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `key_no` (`no`)
+  KEY `key_id_card` (`id_card`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

@@ -22,7 +22,7 @@ def list_person():
 
 def create_person(data):
     session = db_session()
-    person = orm.Person(no=data["no"], region=data["region"], sex=data["sex"], age=data["age"], phone=data["phone"], create_at=datetime.datetime.now())
+    person = orm.Person(id_card=data["id_card"], region=data["region"], sex=data["sex"], age=data["age"], phone=data["phone"], create_at=datetime.datetime.now())
     session.add(person)
     session.commit()
     session.close()

@@ -18,7 +18,7 @@ class Account(Base):
 class Person(Base):
     __tablename__ = "tb_person"
     id = Column(Integer, primary_key=True)
-    no = Column(String(64))
+    id_card = Column(String(64))
     region = Column(String(256))
     sex = Column(String(64))
     age = Column(Integer)

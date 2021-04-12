@@ -46,7 +46,7 @@ g_web_module.person = {
                                 <span>身份证号码：</span> \
                             </div> \
                             <div class="col-md-8"> \
-                                <input id="id_edit_no" class="form-control" type="text" readonly="readonly"> \
+                                <input id="id_edit_id_card" class="form-control" type="text" readonly="readonly"> \
                             </div> \
                         </div> \
                         <div class="row" style="margin:5px"> \
@@ -132,7 +132,7 @@ g_web_module.person = {
             buttonsClass: "default",
             columns: [
                 {checkbox: true},
-                {field: "no", title: "身份证号码"},
+                {field: "id_card", title: "身份证号码"},
                 {field: "region", title: "地区"},
                 {field: "sex", title: "性别"},
                 {field: "age", title: "年龄"},
@@ -222,7 +222,7 @@ g_web_module.person = {
             $("body").append(this.person_dialog);
 
             $("#id_dialog_title").text("编辑");
-            $("#id_edit_no").val(row_data["no"]);
+            $("#id_edit_id_card").val(row_data["id_card"]);
             $("#id_edit_phone").val(row_data["phone"]);
 
             $("#id_button_close, #id_button_cancel").click(function() {
