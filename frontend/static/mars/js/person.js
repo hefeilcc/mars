@@ -32,40 +32,42 @@ g_web_module.person = {
         </div> \
         ',
 
-    person_dialog: ' \
-        <div id="id_person_dialog" class="modal" tabindex="-1"> \
-            <div id="id_div_dialog" style="width:420px;"> \
-                <div class="dialog_header"> \
-                    <span id="id_dialog_title" style="float:left;"></span> \
-                    <button id="id_button_close" class="button_x" style="float:right;" type="button">&times;</button> \
-                </div> \
-                <div class="dialog_body"> \
-                    <form id="id_form_edit_person"> \
-                        <div class="row" style="margin:5px"> \
-                            <div class="col-md-4"> \
-                                <span>身份证号码：</span> \
-                            </div> \
-                            <div class="col-md-8"> \
-                                <input id="id_edit_id_card" class="form-control" type="text" readonly="readonly"> \
-                            </div> \
-                        </div> \
-                        <div class="row" style="margin:5px"> \
-                            <div class="col-md-4"> \
-                                <span>手机号码：</span> \
-                            </div> \
-                            <div class="col-md-8"> \
-                                <input id="id_edit_phone" class="form-control"  name="person_phone" type="text"> \
-                            </div> \
-                        </div> \
-                    </form> \
-                </div> \
-                <div class="dialog_footer"> \
-                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">确定</button> \
-                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="float:right; margin-top:7px; margin-left:5px;" type="button">取消</button> \
-                </div> \
-            </div> \
-        </div> \
-        ',
+    person_dialog: `
+        <div id="id_person_dialog" class="modal" tabindex="-1">
+            <div id="id_div_dialog" style="width:420px;">
+                <div class="dialog_header">
+                    <span id="id_dialog_title" style="float:left;"></span>
+                    <button id="id_button_close" class="button_x" style="float:right;">✕</button> \
+                </div>
+                <div class="dialog_body">
+                    <form id="id_form_edit_person" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="text-align:right; vertical-align:top; margin-top:7px;">身份证</label>
+                            <div class="col-md-8" style="display:inline-block; margin-left:-5px; padding-left:0;">
+                                <input id="id_edit_id_card" class="form-control" type="text" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="text-align:right; vertical-align:top; margin-top:7px;">手机号码<span style="color:red;">*</span></label>
+                            <div class="col-md-8" style="display:inline-block; margin-left:-5px; padding-left:0;">
+                                <input id="id_edit_phone" class="form-control" name="person_phone" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="text-align:right; vertical-align:top; margin-top:7px;">地区<span style="color:red;">*</span></label>
+                            <div class="col-md-8" style="display:inline-block; margin-left:-5px; padding-left:0;">
+                                <input id="id_edit_region" class="form-control" name="person_region" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="dialog_footer">
+                    <button id="id_button_ok" class="btn btn-primary btn-sm" style="float:right; margin-left:5px;" type="button">确定</button>
+                    <button id="id_button_cancel" class="btn btn-secondary btn-sm" style="float:right; margin-left:5px;" type="button">取消</button>
+                </div>
+            </div>
+        </div>
+        `,
 
     init: function() {
         var that = this;
@@ -224,6 +226,7 @@ g_web_module.person = {
             $("#id_dialog_title").text("编辑");
             $("#id_edit_id_card").val(row_data["id_card"]);
             $("#id_edit_phone").val(row_data["phone"]);
+            $("#id_edit_region").val(row_data["region"]);
 
             $("#id_button_close, #id_button_cancel").click(function() {
                 $('#id_person_dialog').modal("hide");
@@ -261,6 +264,7 @@ g_web_module.person = {
             data: JSON.stringify({
                 "id": id,
                 "phone": $("#id_edit_phone").val(),
+                "region": $("#id_edit_region").val(),
             }),
 
             success: function(data) {
@@ -345,11 +349,17 @@ g_web_module.person = {
                 person_phone: {
                     required: true,
                 },
+                person_region: {
+                    required: true,
+                },
             },
 
             messages: {
                 person_phone: {
                     required: "请输入手机号码",
+                },
+                person_region: {
+                    required: "请输入地区",
                 },
             },
         });

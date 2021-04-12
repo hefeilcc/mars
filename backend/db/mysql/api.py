@@ -27,9 +27,9 @@ def create_person(data):
     session.commit()
     session.close()
 
-def update_person(id, phone):
+def update_person(id, phone, region):
     session = db_session()
-    session.query(orm.Person).filter(orm.Person.id==id).update({"phone":phone})
+    session.query(orm.Person).filter(orm.Person.id==id).update({"phone":phone, "region":region})
     session.commit()
     session.close()
 

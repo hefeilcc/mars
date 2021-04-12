@@ -63,7 +63,8 @@ class PersonHandler(web.RequestHandler):
 
         id = para["id"]
         phone = para["phone"]
-        mysql_api.update_person(id, phone)
+        region = para["region"]
+        mysql_api.update_person(id, phone, region)
 
         return response
 
