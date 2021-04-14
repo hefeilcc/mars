@@ -33,14 +33,15 @@
         <div class="center_area">
             <div class="left_area">
                 <ul class="menu_list">
+                    <li><a class="menu_item menu_item_active" href=""><i class="fa fa-fw fa-bars"></i><span>首页</span></a></li>
+                    <li><a class="menu_item" href="person"><i class="fa fa-fw fa-bars"></i><span>个人信息</span></a></li>
                     <li>
-                        <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i><span>首页</span></a>
-                    </li>
-                    <li>
-                        <a class="menu_item menu_item_active" href="person"><i class="fa fa-fw fa-bars"></i><span>个人信息</span></a>
-                    </li>
-                    <li>
-                        <a class="menu_item" href=""><i class="fa fa-fw fa-bars"></i><span>系统设置</span></a>
+                        <a class="menu_item submenu" href=""><i class="fa fa-fw fa-bars"></i><span>系统设置</span><span class="pull-right"><i class="fa fa-angle-right" style="text-align:right;"></i></span></a>
+                        <ul class="menu_list" style="display:none;">
+                            <a class="submenu_item" href=""><span>网络设置</span></a>
+                            <a class="submenu_item" href=""><span>日志设置</span></a>
+                            <a class="submenu_item" href=""><span>关于</span></a>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -73,11 +74,49 @@
             });
 
             $(".menu_item").click(function() {
-                $(".menu_item").removeClass("menu_item_active");
-                $(this).addClass("menu_item_active");
+                if ($(this).hasClass("submenu")) {
+                    var arrow_icon = $($(this).children("span")[1]).children("i");
+                    if ($(this).hasClass("submenu_open")) {
+                        $(arrow_icon).removeClass("fa-angle-down");
+                        $(arrow_icon).addClass("fa-angle-right");
+                        $(this).removeClass("submenu_open");
+                        $(this).next().slideUp("fast");
+                    } else {
+                        $(arrow_icon).removeClass("fa-angle-right");
+                        $(arrow_icon).addClass("fa-angle-down");
+                        $(this).addClass("submenu_open");
+                        $(this).next().slideDown("fast");
+                    }
+                } else {
+                    $(".menu_item").removeClass("menu_item_active");
+                    $(".submenu_item").removeClass("submenu_item_active");
 
+                    $(this).addClass("menu_item_active");
+
+                    var module_title = $(this).text();
+                    $("#module_title").html(module_title);
+
+                    var module_name = $(this).attr("href");
+                    if (module_name.length > 0) {
+                        open_module(module_name);
+                    } else {
+                        $("#module_content").html("");
+                    }
+                }
+
+                return false;
+            });
+
+            $(".submenu_item").click(function() {
+                $(".menu_item").removeClass("menu_item_active");
+                $(".submenu_item").removeClass("submenu_item_active");
+
+                $(this).parent().prev().addClass("menu_item_active");
+                $(this).addClass("submenu_item_active");
+
+                var parent_title = $(this).parent().prev().text();
                 var module_title = $(this).text();
-                $("#module_title").html(module_title);
+                $("#module_title").html(parent_title + " / " + module_title);
 
                 var module_name = $(this).attr("href");
                 if (module_name.length > 0) {

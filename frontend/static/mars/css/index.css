@@ -83,16 +83,6 @@ body {
     color: rgb(255,255,255);
 }
 
-.menu_item:active {
-    background: rgb(97,148,193);
-    color: rgb(255,255,255);
-}
-
-.menu_item:focus {
-    background: rgb(97,148,193);
-    color: rgb(255,255,255);
-}
-
 .menu_item_active {
     background: rgb(97,148,193);
     color: rgb(255,255,255);
@@ -100,6 +90,27 @@ body {
 
 .menu_item span {
     margin-left: 5px;
+}
+
+.submenu_item {
+    display: block;
+    padding: 5px 26px;
+    height: 34px;
+    background: rgb(25,25,25);
+    color: rgb(181,181,181);
+}
+
+.submenu_item:hover {
+    text-decoration: none;
+    color: rgb(255,255,255);
+}
+
+.submenu_item_active {
+    color: rgb(255,255,255);
+}
+
+.submenu_item span {
+    margin-left: 10px;
 }
 
 #module_title {
