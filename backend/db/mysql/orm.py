@@ -14,6 +14,8 @@ class Account(Base):
     password = Column(String(64))
     create_at = Column(DateTime)
     update_at = Column(DateTime)
+    delete_at = Column(DateTime)
+    delete = Column(Integer, default=0)
 
 class Person(Base):
     __tablename__ = "tb_person"
@@ -23,5 +25,21 @@ class Person(Base):
     sex = Column(String(64))
     age = Column(Integer)
     phone = Column(String(64))
+    status = Column(Integer, default=0)
     create_at = Column(DateTime)
     update_at = Column(DateTime)
+    delete_at = Column(DateTime)
+    delete = Column(Integer, default=0)
+
+class Sbaidu(Base):
+    __tablename__ = "tb_sbaidu"
+    id = Column(Integer, primary_key=True)
+    category = Column(String(64))
+    question = Column(String(256))
+    solution = Column(String(1024))
+    sharer = Column(String(64))
+    remark = Column(String(1024))
+    create_at = Column(DateTime)
+    update_at = Column(DateTime)
+    delete_at = Column(DateTime)
+    delete = Column(Integer, default=0)

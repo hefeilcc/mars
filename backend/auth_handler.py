@@ -43,6 +43,6 @@ class AuthHandler(web.RequestHandler):
             return response
 
         session = SessionHandler(self)
-        session.save_session(account)
+        session.save_session({"account": account})
         
         return response

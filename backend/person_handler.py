@@ -2,6 +2,7 @@
 import json
 import random
 import time
+import traceback
 import tornado
 from tornado import web
 from tornado import gen
@@ -14,10 +15,13 @@ class PersonHandler(web.RequestHandler):
     @web.asynchronous
     @gen.coroutine
     def post(self, handler):
-        method = getattr(self, handler)
-        para = json.loads(self.request.body)
-        response = yield method(para)
-        self.finish(json.dumps(response))
+        try:
+            method = getattr(self, handler)
+            para = json.loads(self.request.body)
+            response = yield method(para)
+            self.finish(json.dumps(response))
+        except:
+            logger.debug(traceback.format_exc())
 
     @gen.coroutine
     @login_required
@@ -35,6 +39,7 @@ class PersonHandler(web.RequestHandler):
                 "sex": item.sex,
                 "age": item.age,
                 "phone": item.phone,
+                "status": item.status,
                 "create_at": item.create_at.strftime("%Y-%m-%d %H:%M:%S"),
             }
             person_list.append(temp_dict)
@@ -65,6 +70,18 @@ class PersonHandler(web.RequestHandler):
         phone = para["phone"]
         region = para["region"]
         mysql_api.update_person(id, phone, region)
+
+        return response
+
+    @gen.coroutine
+    @login_required
+    def switch_status(self, para):
+        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
+        response = {"errcode": 0, "message": "success"}
+
+        id = para["id"]
+        status = para["status"]
+        mysql_api.update_person_status(id, status)
 
         return response
 

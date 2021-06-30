@@ -15,7 +15,8 @@ class RootHandler(web.RequestHandler):
     @gen.coroutine
     def init(self):
         session = SessionHandler(self)
-        if session.check_session():
-            self.render("index.html")
+        result = session.check_session()
+        if result:
+            self.render("index.html", account=result["account"])
         else:
             self.render("login.html")

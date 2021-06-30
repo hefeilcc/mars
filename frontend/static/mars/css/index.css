@@ -63,6 +63,14 @@ body {
     color: rgb(240,240,240);
 }
 
+.user_info {
+    float: right;
+    line-height: 60px;
+    font-size: 24px;
+    margin-right: 10px;
+    color: rgb(240,240,240);
+}
+
 .menu_list {
     margin: 0px;
     padding: 0px;

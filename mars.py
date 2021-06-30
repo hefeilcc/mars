@@ -10,6 +10,7 @@ import tornado.httpserver
 from backend import root_handler
 from backend import auth_handler
 from backend import person_handler
+from backend import sbaidu_handler
 from backend.utils import logger
 
 def make_app():
@@ -25,6 +26,7 @@ def make_app():
         (r"/", root_handler.RootHandler),
         (r"/auth/(.*)", auth_handler.AuthHandler),
         (r"/person/(.*)", person_handler.PersonHandler),
+        (r"/sbaidu/(.*)", sbaidu_handler.SbaiduHandler),
     ], **settings)
 
     app.current_path = current_path
