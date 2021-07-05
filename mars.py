@@ -11,6 +11,7 @@ from backend import root_handler
 from backend import auth_handler
 from backend import person_handler
 from backend import sbaidu_handler
+from backend import ocr_handler
 from backend.utils import logger
 
 def make_app():
@@ -27,6 +28,7 @@ def make_app():
         (r"/auth/(.*)", auth_handler.AuthHandler),
         (r"/person/(.*)", person_handler.PersonHandler),
         (r"/sbaidu/(.*)", sbaidu_handler.SbaiduHandler),
+        (r"/ocr/(.*)", ocr_handler.OcrHandler),
     ], **settings)
 
     app.current_path = current_path
