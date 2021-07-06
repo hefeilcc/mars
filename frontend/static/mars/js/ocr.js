@@ -22,7 +22,7 @@ g_web_module.ocr = {
                     <div class="form-group">
                         <label class="control-label">请选择图片：</label>
                         <input id="id_input_file_name" class="form-control" style="width:250px;" type="text" placeholder="请选择图片" readonly="readonly">
-                        <input id="id_input_upload_file" type="file" name="file" accept="image/*" style="display:none"/>
+                        <input id="id_input_upload_file" type="file" name="file" style="display:none"/>
                         <a id="id_button_select_file" class="btn btn-primary" style="margin-left:5px;">选择图片</a>
                         <a id="id_button_start_ocr" class="btn btn-success" style="margin-left:5px;">开始识别</a>
                     </div>
@@ -67,7 +67,6 @@ g_web_module.ocr = {
             var mfile = $("#id_input_upload_file")[0].files[0];
             file_reader.readAsDataURL(mfile);
             file_reader.onload = function() {
-                console.log();
                 that.ajax_do_ocr(ocr_url, this.result);
             }
         });

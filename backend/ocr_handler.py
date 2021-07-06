@@ -54,7 +54,7 @@ class OcrHandler(web.RequestHandler):
     @gen.coroutine
     @login_required
     def do_ocr(self, para):
-        logger.debug("request url: %s, para: %s" % (self.request.uri, para))
+        logger.debug("request url: %s, para: %s" % (self.request.uri, "too long to show"))
         response = {"errcode": 0, "message": "success"}
 
         ocr_url = para["ocr_url"]
@@ -64,6 +64,7 @@ class OcrHandler(web.RequestHandler):
         with open(image_file, "wb+") as f:
             f.write(base64.b64decode(image_data.split(",")[1]))
 
+        # todo: call api
         result = requests.get("https://www.baidu.com/")
         logger.debug(result.text)
 
