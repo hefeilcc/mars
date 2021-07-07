@@ -13,6 +13,7 @@ from backend import person_handler
 from backend import sbaidu_handler
 from backend import ocr_handler
 from backend import pdf_handler
+from backend import doc_handler
 from backend.utils import logger
 
 def make_app():
@@ -31,6 +32,7 @@ def make_app():
         (r"/sbaidu/(.*)", sbaidu_handler.SbaiduHandler),
         (r"/ocr/(.*)", ocr_handler.OcrHandler),
         (r"/pdf/(.*)", pdf_handler.PdfHandler),
+        (r"/doc/(.*)", doc_handler.DocHandler),
     ], **settings)
 
     app.current_path = current_path

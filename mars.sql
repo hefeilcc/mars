@@ -73,3 +73,20 @@ CREATE TABLE `tb_sbaidu` (
   `delete` int(11) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for tb_doc
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_doc`;
+CREATE TABLE `tb_doc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '表id',
+  `category` varchar(64) NOT NULL DEFAULT '' COMMENT '分类',
+  `title` varchar(256) NOT NULL DEFAULT '' COMMENT '标题',
+  `file_path` varchar(1024) NOT NULL DEFAULT '' COMMENT '文件路径',
+  `sharer` varchar(64) DEFAULT '' COMMENT '分享人',
+  `create_at` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `delete_at` datetime DEFAULT NULL COMMENT '删除时间',
+  `delete` int(11) DEFAULT '0' COMMENT '删除标记',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

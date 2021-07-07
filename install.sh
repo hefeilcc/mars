@@ -7,6 +7,7 @@ ps -ef | grep -w mars.py | grep -v grep | awk '{print $2}' | xargs kill >/dev/nu
 #rm -rf /opt/mars
 #cp -rf ../mars /opt
 
+mkdir -p /opt/docs
 mkdir -p /opt/mars
 rsync -av --delete ./ /opt/mars/
 

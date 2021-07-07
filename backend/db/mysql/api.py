@@ -81,3 +81,49 @@ def delete_sbaidu(id_list, soft_delete=True):
         session.query(orm.Sbaidu).filter(orm.Sbaidu.id.in_(id_list)).delete(synchronize_session=False)
         session.commit()
         session.close()
+
+def get_doc(id):
+    session = db_session()
+    result = session.query(orm.Doc).filter(orm.Doc.id==id).filter(orm.Doc.delete==0).first()
+    session.close()
+    return result
+
+def list_doc():
+    session = db_session()
+    result = session.query(orm.Doc).filter(orm.Doc.delete==0).order_by(orm.Doc.id.desc()).all()
+    session.close()
+    return result
+
+def create_doc(data):
+    session = db_session()
+    doc = orm.Doc(category=data["category"], title=data["title"], file_path=data["file_path"], sharer=data["sharer"], create_at=datetime.datetime.now())
+    session.add(doc)
+    session.commit()
+    session.close()
+
+def update_doc(id, category, title, file_path):
+    update_dict = {
+        "category":category,
+        "title":title,
+        "update_at":datetime.datetime.now(),
+    }
+
+    if file_path:
+        update_dict["file_path"] = file_path
+
+    session = db_session()
+    session.query(orm.Doc).filter(orm.Doc.id==id).filter(orm.Doc.delete==0).update(update_dict)
+    session.commit()
+    session.close()
+
+def delete_doc(id_list, soft_delete=True):
+    if soft_delete:
+        session = db_session()
+        session.query(orm.Doc).filter(orm.Doc.id.in_(id_list)).filter(orm.Doc.delete==0).update({"delete":1, "delete_at":datetime.datetime.now()}, synchronize_session=False)
+        session.commit()
+        session.close()
+    else:
+        session = db_session()
+        session.query(orm.Doc).filter(orm.Doc.id.in_(id_list)).delete(synchronize_session=False)
+        session.commit()
+        session.close()

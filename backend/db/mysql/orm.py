@@ -43,3 +43,15 @@ class Sbaidu(Base):
     update_at = Column(DateTime)
     delete_at = Column(DateTime)
     delete = Column(Integer, default=0)
+
+class Doc(Base):
+    __tablename__ = "tb_doc"
+    id = Column(Integer, primary_key=True)
+    category = Column(String(64))
+    title = Column(String(256))
+    file_path = Column(String(256))
+    sharer = Column(String(64))
+    create_at = Column(DateTime)
+    update_at = Column(DateTime)
+    delete_at = Column(DateTime)
+    delete = Column(Integer, default=0)
